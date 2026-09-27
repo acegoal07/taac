@@ -1,17 +1,17 @@
 import { Command, ux } from '@oclif/core';
 import { Client } from 'ssh2';
 
-import { NameArg } from '../args/name.js';
-import Cluster from '../lib/cluster.js';
-import { dockerUp } from '../lib/util.js';
+import { NameArg } from '../../args/name.js';
+import Cluster from '../../lib/cluster.js';
+import { dockerUp } from '../../lib/util.js';
 
-export default class Connect extends Command {
+export default class SSHIndex extends Command {
    static override readonly args = { name: NameArg };
 
-   static override readonly description = 'Handles connecting to tac clusters';
+   static override readonly description = 'SSH into a running tac clusters';
 
    public async run(): Promise<void> {
-      const { args } = await this.parse(Connect);
+      const { args } = await this.parse(SSHIndex);
 
       // Check whether docker is running
       if (!(await dockerUp())) {
@@ -28,7 +28,9 @@ export default class Connect extends Command {
 
       // Check that the cluster is running
       if (!(await cluster.isUp())) {
-         throw new Error(ux.colorize('red', 'The cluster needs to running to be able to connect'));
+         throw new Error(
+            ux.colorize('red', 'The cluster needs to running to be able to SSH into it')
+         );
       }
 
       // Get SHH client
