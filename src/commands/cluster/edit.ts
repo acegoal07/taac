@@ -1,47 +1,26 @@
-import { Args, Command, Flags, ux } from '@oclif/core';
+import { Command, ux } from '@oclif/core';
 
-import Cluster, { type ClusterOptions } from '../../assets/lib/cluster.js';
-import { dockerUp } from '../../assets/lib/util.js';
+import { NameArg } from '../../args/name.js';
+import { CPUsFlag } from '../../flags/cpus.js';
+import { DatabaseFlag } from '../../flags/database.js';
+import { MemoryFlag } from '../../flags/memory.js';
+import { ModuleFlag } from '../../flags/module.js';
+import { NodesFlag } from '../../flags/nodes.js';
+import { PortFlag } from '../../flags/port.js';
+import Cluster, { type ClusterOptions } from '../../lib/cluster.js';
+import { dockerUp } from '../../lib/util.js';
 
 export default class ClusterEdit extends Command {
-   static override readonly args = {
-      name: Args.string({ description: 'The name of the cluster to edit', required: true })
-   };
+   static override readonly args = { name: NameArg };
 
    static override readonly description = 'Edits the info for a cluster';
    static override readonly flags = {
-      cpus: Flags.integer({
-         char: 'c',
-         description: 'How many CPUs to give each node',
-         max: 4,
-         min: 1
-      }),
-      database: Flags.boolean({
-         char: 'd',
-         description: 'Whether or not a database should be setup for the cluster'
-      }),
-      memory: Flags.integer({
-         char: 'm',
-         description: 'How much memory will be given to the cluster',
-         max: 4096,
-         min: 1024
-      }),
-      module: Flags.string({
-         char: 'l',
-         description: 'The module loader type to use in the cluster'
-      }),
-      nodes: Flags.integer({
-         char: 'k',
-         description: 'How many nodes to give to the cluster',
-         max: 5,
-         min: 1
-      }),
-      port: Flags.integer({
-         char: 'p',
-         description: 'Which port to use for the SSH',
-         max: 2300,
-         min: 2200
-      })
+      cpus: CPUsFlag,
+      database: DatabaseFlag,
+      memory: MemoryFlag,
+      module: ModuleFlag,
+      nodes: NodesFlag,
+      port: PortFlag
    };
 
    public async run(): Promise<void> {
