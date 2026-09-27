@@ -7,7 +7,7 @@ import { dockerUp } from '../../lib/util.js';
 export default class ClusterRestart extends Command {
    static override readonly args = { name: NameArg };
 
-   static override readonly description = 'Restarts a running cluster';
+   static override readonly description = 'Restarts a running tac cluster';
 
    public async run(): Promise<void> {
       const { args } = await this.parse(ClusterRestart);

@@ -13,7 +13,7 @@ import { dockerUp } from '../../lib/util.js';
 export default class ClusterEdit extends Command {
    static override readonly args = { name: NameArg };
 
-   static override readonly description = 'Edits the info for a cluster';
+   static override readonly description = "Edit's a tac cluster";
    static override readonly flags = {
       cpus: CPUsFlag,
       database: DatabaseFlag,

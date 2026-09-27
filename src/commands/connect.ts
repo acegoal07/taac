@@ -8,8 +8,7 @@ import { dockerUp } from '../lib/util.js';
 export default class Connect extends Command {
    static override readonly args = { name: NameArg };
 
-   static override readonly description =
-      'Handles connecting to the cluster that the cli has corrected';
+   static override readonly description = 'Handles connecting to clusters that tac created';
 
    public async run(): Promise<void> {
       const { args } = await this.parse(Connect);

@@ -7,7 +7,7 @@ import { dockerUp } from '../../lib/util.js';
 export default class ClusterStop extends Command {
    static override readonly args = { name: NameArg };
 
-   static override readonly description = 'Stops a cluster you have running';
+   static override readonly description = 'Stops a running tac cluster';
 
    public async run(): Promise<void> {
       const { args } = await this.parse(ClusterStop);
