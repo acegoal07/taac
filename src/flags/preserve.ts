@@ -1,4 +1,4 @@
-import { Flags } from "@oclif/core";
+import { Flags } from '@oclif/core';
 
 /**
  * Preserve flag
