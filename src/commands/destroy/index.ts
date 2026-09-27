@@ -1,12 +1,11 @@
-import { Args, Command, Flags, ux } from '@oclif/core';
+import { Command, Flags, ux } from '@oclif/core';
 
-import Cluster from '../../assets/lib/cluster.js';
-import { dockerUp } from '../../assets/lib/util.js';
+import { NameArg } from '../../args/name.js';
+import Cluster from '../../lib/cluster.js';
+import { dockerUp } from '../../lib/util.js';
 
 export default class DestroyIndex extends Command {
-   static override readonly args = {
-      name: Args.string({ description: 'The name of the cluster', required: true })
-   };
+   static override readonly args = { name: NameArg };
 
    static override readonly description = 'Destroys a specific docker cluster';
 

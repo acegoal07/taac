@@ -1,13 +1,12 @@
-import { Args, Command, ux } from '@oclif/core';
+import { Command, ux } from '@oclif/core';
 import { Client } from 'ssh2';
 
-import Cluster from '../assets/lib/cluster.js';
-import { dockerUp } from '../assets/lib/util.js';
+import { NameArg } from '../args/name.js';
+import Cluster from '../lib/cluster.js';
+import { dockerUp } from '../lib/util.js';
 
 export default class Connect extends Command {
-   static override readonly args = {
-      name: Args.string({ description: 'The name of the cluster to SSH into', required: true })
-   };
+   static override readonly args = { name: NameArg };
 
    static override readonly description =
       'Handles connecting to the cluster that the cli has corrected';

@@ -2,8 +2,8 @@ import { Command, ux } from '@oclif/core';
 import Table from 'cli-table3';
 import { existsSync, readdirSync } from 'node:fs';
 
-import Cluster from '../../assets/lib/cluster.js';
-import { pathToCluster } from '../../assets/lib/paths.js';
+import Cluster from '../../lib/cluster.js';
+import { pathToCluster } from '../../lib/paths.js';
 
 export default class ClusterList extends Command {
    static override readonly description = 'Lists all the clusters';

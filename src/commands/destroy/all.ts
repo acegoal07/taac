@@ -2,9 +2,9 @@ import { Command, Flags, ux } from '@oclif/core';
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 
-import Cluster from '../../assets/lib/cluster.js';
-import { pathToCluster } from '../../assets/lib/paths.js';
-import { dockerUp } from '../../assets/lib/util.js';
+import Cluster from '../../lib/cluster.js';
+import { pathToCluster } from '../../lib/paths.js';
+import { dockerUp } from '../../lib/util.js';
 
 export default class DestroyAll extends Command {
    static override readonly description =
