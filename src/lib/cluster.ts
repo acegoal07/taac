@@ -46,12 +46,14 @@ export default class Cluster {
       host: string;
       port: number;
       privateKey: string;
+      privateKeyPath: string;
       username: string;
    } {
       return {
          host: 'localhost',
          port: this.options?.port ?? 2200,
          privateKey: readFileSync(path.join(this.path, 'cluster_key'), 'utf8'),
+         privateKeyPath: path.join(this.path, 'cluster_key'),
          username: 'dev'
       };
    }
@@ -63,6 +65,14 @@ export default class Cluster {
     */
    create(options: ClusterOptions): boolean {
       try {
+         // Catch CTRL + C and clean up
+         process.on('SIGINT', () => {
+            rmSync(this.path, {
+               force: true,
+               recursive: true
+            });
+         });
+
          // Reused variables
          const authorizedKeys = path.join(this.path, 'authorized_keys');
 

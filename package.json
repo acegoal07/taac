@@ -1,6 +1,6 @@
 {
    "name": "@acegoal07/tac",
-   "version": "0.0.23",
+   "version": "0.0.24",
    "description": "A CLI tool for creating, accessing and managing docker based clusters",
    "author": "acegoal07",
    "license": "MIT",
@@ -65,7 +65,10 @@
             "description": "Commands used to create and manipulate clusters"
          },
          "destroy": {
-            "description": "Destroy a cluster and delete it's files"
+            "description": "Commands used to destroy clusters and manage clean up their files"
+         },
+         "ssh": {
+            "description": "Commands to access the tac clusters"
          }
       }
    },

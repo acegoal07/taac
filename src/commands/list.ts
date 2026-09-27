@@ -6,7 +6,7 @@ import Cluster from '../lib/cluster.js';
 import { pathToCluster } from '../lib/paths.js';
 
 export default class List extends Command {
-   static override readonly description = 'Lists all the clusters';
+   static override readonly description = 'Lists all tac clusters that have been created';
 
    public async run(): Promise<void> {
       // Cluster dir path

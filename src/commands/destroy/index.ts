@@ -8,7 +8,7 @@ import { dockerUp } from '../../lib/util.js';
 export default class DestroyIndex extends Command {
    static override readonly args = { name: NameArg };
 
-   static override readonly description = 'Destroys a specific docker cluster';
+   static override readonly description = 'Destroys a specific tac cluster';
 
    static override readonly flags = { preserve: PreserveFlag };
 

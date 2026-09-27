@@ -10,7 +10,7 @@ import { PortFlag } from '../../flags/port.js';
 import Cluster from '../../lib/cluster.js';
 
 export default class ClusterCreate extends Command {
-   static override readonly description = 'Creates a clusters files using the options provided';
+   static override readonly description = 'Creates a clusters using the flags provided';
    static override readonly flags = {
       cpus: CPUsFlag,
       database: DatabaseFlag,
