@@ -8,7 +8,7 @@ import path from 'node:path';
  * @returns The completed path
  */
 export function pathToCLIAssets(dir: string, ...destination: string[]): string {
-   return path.join(dir, '..', ...destination);
+   return path.join(dir, '../assets', ...destination);
 }
 
 /**
