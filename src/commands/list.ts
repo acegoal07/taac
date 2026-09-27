@@ -2,10 +2,10 @@ import { Command, ux } from '@oclif/core';
 import Table from 'cli-table3';
 import { existsSync, readdirSync } from 'node:fs';
 
-import Cluster from '../../lib/cluster.js';
-import { pathToCluster } from '../../lib/paths.js';
+import Cluster from '../lib/cluster.js';
+import { pathToCluster } from '../lib/paths.js';
 
-export default class ClusterList extends Command {
+export default class List extends Command {
    static override readonly description = 'Lists all the clusters';
 
    public async run(): Promise<void> {
@@ -82,6 +82,13 @@ export default class ClusterList extends Command {
 
       // Add rows to table
       table.push(...rows.filter((row): row is Array<number | string> => row !== undefined));
+
+      // Check that there is information
+      if (table.length === 0) {
+         ux.action.stop(ux.colorize('green', 'Successful'));
+         console.log(ux.colorize('green', '\nNo clusters exist\n'));
+         return;
+      }
 
       // Visualise the information
       ux.action.stop(ux.colorize('green', 'Successful'));

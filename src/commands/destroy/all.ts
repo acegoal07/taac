@@ -1,7 +1,8 @@
-import { Command, Flags, ux } from '@oclif/core';
+import { Command, ux } from '@oclif/core';
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 
+import { PreserveFlag } from '../../flags/preserve.js';
 import Cluster from '../../lib/cluster.js';
 import { pathToCluster } from '../../lib/paths.js';
 import { dockerUp } from '../../lib/util.js';
@@ -10,13 +11,7 @@ export default class DestroyAll extends Command {
    static override readonly description =
       'Destroys all the docker clusters that have been created using the tool';
 
-   static override readonly flags = {
-      preserve: Flags.boolean({
-         char: 'p',
-         default: false,
-         description: 'Preserve cluster files so it can be booted again'
-      })
-   };
+   static override readonly flags = { preserve: PreserveFlag };
 
    public async run(): Promise<void> {
       const { flags } = await this.parse(DestroyAll);

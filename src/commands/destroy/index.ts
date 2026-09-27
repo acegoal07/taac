@@ -1,6 +1,7 @@
-import { Command, Flags, ux } from '@oclif/core';
+import { Command, ux } from '@oclif/core';
 
 import { NameArg } from '../../args/name.js';
+import { PreserveFlag } from '../../flags/preserve.js';
 import Cluster from '../../lib/cluster.js';
 import { dockerUp } from '../../lib/util.js';
 
@@ -9,13 +10,7 @@ export default class DestroyIndex extends Command {
 
    static override readonly description = 'Destroys a specific docker cluster';
 
-   static override readonly flags = {
-      preserve: Flags.boolean({
-         char: 'p',
-         default: false,
-         description: 'Preserve cluster files so it can be booted again'
-      })
-   };
+   static override readonly flags = { preserve: PreserveFlag };
 
    public async run(): Promise<void> {
       const { args, flags } = await this.parse(DestroyIndex);
