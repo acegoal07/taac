@@ -6,6 +6,8 @@ import Cluster from '../../lib/cluster.js';
 export default class SshInfo extends Command {
    static override readonly args = { name: NameArg };
 
+   static override readonly description = 'Get tac cluster SSH information';
+
    public async run(): Promise<void> {
       const { args } = await this.parse(SshInfo);
 
