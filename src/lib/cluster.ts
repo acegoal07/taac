@@ -1,4 +1,4 @@
-import { down, downAll, type IDockerComposeResult, ps, stop, upAll } from 'docker-compose';
+import { down, type IDockerComposeResult, ps, stop, upAll } from 'docker-compose';
 import { Eta } from 'eta';
 import { randomBytes } from 'node:crypto';
 import { appendFileSync, cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
