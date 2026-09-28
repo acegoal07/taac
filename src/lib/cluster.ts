@@ -1,4 +1,4 @@
-import { down, type IDockerComposeResult, ps, stop, upAll } from 'docker-compose';
+import { down, downAll, type IDockerComposeResult, ps, stop, upAll } from 'docker-compose';
 import { Eta } from 'eta';
 import { randomBytes } from 'node:crypto';
 import { appendFileSync, cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -65,14 +65,6 @@ export default class Cluster {
     */
    create(options: ClusterOptions): boolean {
       try {
-         // Catch CTRL + C and clean up
-         process.on('SIGINT', () => {
-            rmSync(this.path, {
-               force: true,
-               recursive: true
-            });
-         });
-
          // Reused variables
          const authorizedKeys = path.join(this.path, 'authorized_keys');
 
