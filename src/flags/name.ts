@@ -5,7 +5,7 @@ import { Flags } from '@oclif/core';
  */
 export const NameFlag = Flags.string({
    char: 'n',
-   default: 'tac',
+   default: 'taac',
    description: 'The name of the cluster',
    async parse(value) {
       const trimmed = value.trim();

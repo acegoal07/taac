@@ -1,12 +1,12 @@
 {
-   "name": "@acegoal07/tac",
-   "version": "0.0.24",
+   "name": "@acegoal07/taac",
+   "version": "1.0.0",
    "description": "A CLI tool for creating, accessing and managing docker based clusters",
    "author": "acegoal07",
    "license": "MIT",
-   "repository": "acegoal07/tac",
-   "homepage": "https://github.com/acegoal07/tac",
-   "bugs": "https://github.com/acegoal07/tac/issues",
+   "repository": "acegoal07/taac",
+   "homepage": "https://github.com/acegoal07/taac",
+   "bugs": "https://github.com/acegoal07/taac/issues",
    "publishConfig": {
       "access": "public"
    },
@@ -20,7 +20,7 @@
    "main": "dist/index.js",
    "types": "dist/index.d.ts",
    "bin": {
-      "tac": "./bin/run.js"
+      "taac": "./bin/run.js"
    },
    "files": [
       "bin",
@@ -54,8 +54,8 @@
       "typescript": "^5"
    },
    "oclif": {
-      "bin": "tac",
-      "dirname": "tac",
+      "bin": "taac",
+      "dirname": "taac",
       "commands": "./dist/commands",
       "plugins": [
          "@oclif/plugin-help"
@@ -68,7 +68,7 @@
             "description": "Commands used to destroy clusters and manage clean up their files"
          },
          "ssh": {
-            "description": "Commands to access the tac clusters"
+            "description": "Commands to access the taac clusters"
          }
       }
    },
