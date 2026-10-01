@@ -65,7 +65,7 @@ export default class ClusterRestart extends Command {
             console.log(
                ux.colorize(
                   'green',
-                  `\n${args.name} has been restarted and can now be connect to using:\ntac connect ${cluster.name}\n`
+                  `\n${args.name} has been restarted and can now be connect to using:\ntaac connect ${cluster.name}\n`
                ) +
                   ux.colorize(
                      'yellow',
