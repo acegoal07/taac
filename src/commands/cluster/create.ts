@@ -55,7 +55,7 @@ export default class ClusterCreate extends Command {
          console.log(
             ux.colorize(
                'green',
-               `\nThe ${cluster.name} cluster has been saved to:\n${cluster.path}\n\nYou can now start up the cluster using:\ntac cluster:start ${cluster.name}\n`
+               `\nThe ${cluster.name} cluster has been saved to:\n${cluster.path}\n\nYou can now start up the cluster using:\ntaac cluster:start ${cluster.name}\n`
             )
          );
       } else {
