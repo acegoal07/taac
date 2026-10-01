@@ -7,7 +7,7 @@ import { dockerUp } from '../../lib/util.js';
 export default class ClusterStart extends Command {
    static override readonly args = { name: NameArg };
 
-   static override readonly description = 'Starts a stopped tac cluster';
+   static override readonly description = 'Starts a stopped taac cluster';
 
    public async run(): Promise<void> {
       const { args } = await this.parse(ClusterStart);
@@ -58,7 +58,7 @@ export default class ClusterStart extends Command {
             console.log(
                ux.colorize(
                   'green',
-                  `\n${args.name} has been started and can now be connect to using:\ntac connect ${cluster.name}\n`
+                  `\n${args.name} has been started and can now be connect to using:\ntaac ssh ${cluster.name}\n`
                ) +
                   ux.colorize(
                      'yellow',

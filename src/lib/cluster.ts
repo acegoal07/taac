@@ -65,14 +65,6 @@ export default class Cluster {
     */
    create(options: ClusterOptions): boolean {
       try {
-         // Catch CTRL + C and clean up
-         process.on('SIGINT', () => {
-            rmSync(this.path, {
-               force: true,
-               recursive: true
-            });
-         });
-
          // Reused variables
          const authorizedKeys = path.join(this.path, 'authorized_keys');
 

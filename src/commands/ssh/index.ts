@@ -8,7 +8,7 @@ import { dockerUp } from '../../lib/util.js';
 export default class SSHIndex extends Command {
    static override readonly args = { name: NameArg };
 
-   static override readonly description = 'SSH into a running tac clusters';
+   static override readonly description = 'SSH into a running taac clusters';
 
    public async run(): Promise<void> {
       const { args } = await this.parse(SSHIndex);

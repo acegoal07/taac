@@ -17,5 +17,5 @@ export function pathToCLIAssets(dir: string, ...destination: string[]): string {
  * @returns The completed path
  */
 export function pathToCluster(name?: string): string {
-   return path.join(envPaths('tac').data, name ?? '');
+   return path.join(envPaths('taac').data, name ?? '');
 }
