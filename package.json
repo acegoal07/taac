@@ -1,10 +1,13 @@
 {
    "name": "@acegoal07/taac",
-   "version": "1.0.1",
+   "version": "1.0.2",
    "description": "A CLI tool for creating, accessing and managing docker based clusters",
    "author": "acegoal07",
    "license": "MIT",
-   "repository": "acegoal07/taac",
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/acegoal07/taac.git"
+   },
    "homepage": "https://github.com/acegoal07/taac",
    "bugs": "https://github.com/acegoal07/taac/issues",
    "publishConfig": {
@@ -20,7 +23,7 @@
    "main": "dist/index.js",
    "types": "dist/index.d.ts",
    "bin": {
-      "taac": "./bin/run.js"
+      "taac": "bin/run.js"
    },
    "files": [
       "bin",
