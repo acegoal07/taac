@@ -1,6 +1,6 @@
 {
    "name": "@acegoal07/taac",
-   "version": "1.0.2",
+   "version": "1.0.3",
    "description": "A CLI tool for creating, accessing and managing docker based clusters",
    "author": "acegoal07",
    "license": "MIT",
