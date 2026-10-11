@@ -60,7 +60,7 @@ export default class ClusterRestart extends Command {
       ux.action.start(`Starting ${cluster.name}`);
       await cluster
          .start()
-         .then(async () => {
+         .then(() => {
             ux.action.stop(ux.colorize('green', 'Successful'));
             console.log(
                ux.colorize(
