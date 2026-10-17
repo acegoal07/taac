@@ -1,6 +1,6 @@
 {
    "name": "@acegoal07/taac",
-   "version": "1.0.3",
+   "version": "1.0.4",
    "description": "A CLI tool for creating, accessing and managing docker based clusters",
    "author": "acegoal07",
    "license": "MIT",
@@ -18,7 +18,8 @@
       "docker",
       "docker-compose",
       "cluster",
-      "oclif"
+      "oclif",
+      "hpc"
    ],
    "main": "dist/index.js",
    "types": "dist/index.d.ts",

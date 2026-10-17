@@ -23,6 +23,10 @@ RUN dnf -y install \
     munge-devel \
     mariadb-devel \
     openssh-clients \
+    json-c-devel \
+    llhttp-devel \
+    libyaml-devel \
+    dbus-devel \
     sudo \
     && \
     dnf clean all
@@ -32,23 +36,23 @@ RUN groupadd -r slurm && \
 
 RUN useradd -m dev && \
     echo "dev ALL=(ALL) NOPASSWD:ALL" \
-        > /etc/sudoers.d/dev && \
+    > /etc/sudoers.d/dev && \
     chmod 0440 /etc/sudoers.d/dev
 
 RUN mkdir -p \
-        /var/log/munge \
-        /var/lib/munge \
-        /run/munge \
-        /etc/munge && \
+    /var/log/munge \
+    /var/lib/munge \
+    /run/munge \
+    /etc/munge && \
     chown -R munge:munge \
-        /var/log/munge \
-        /var/lib/munge \
-        /run/munge \
-        /etc/munge && \
+    /var/log/munge \
+    /var/lib/munge \
+    /run/munge \
+    /etc/munge && \
     chmod 700 \
-        /var/log/munge \
-        /var/lib/munge \
-        /run/munge
+    /var/log/munge \
+    /var/lib/munge \
+    /run/munge
 
 WORKDIR /usr/src
 
@@ -69,13 +73,13 @@ RUN make -j$(nproc) && \
     make install
 
 RUN mkdir -p \
-        /etc/slurm \
-        /var/log/slurm \
-        /slurm/state \
-        /slurm/spool && \
+    /etc/slurm \
+    /var/log/slurm \
+    /slurm/state \
+    /slurm/spool && \
     chown -R slurm:slurm \
-        /var/log/slurm \
-        /slurm
+    /var/log/slurm \
+    /slurm
 
 ENV PATH="/usr/local/slurm/bin:/usr/local/slurm/sbin:$PATH"
 
@@ -87,6 +91,9 @@ RUN echo 'CgroupPlugin=disabled' \
     > /etc/slurm/cgroup.conf
 
 WORKDIR /
+
+RUN dnf -y upgrade && \
+    dnf clean all
 
 # Login image
 FROM base AS login
