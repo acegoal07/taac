@@ -67,7 +67,6 @@ RUN ./configure \
     --sysconfdir=/etc/slurm \
     --with-munge \
     --with-mysql \
-    --with-llhttp-parser=/usr \
     --disable-dependency-tracking
 
 RUN make -j$(nproc) && \
