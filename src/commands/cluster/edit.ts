@@ -27,12 +27,12 @@ export default class ClusterEdit extends Command {
       const { args, flags } = await this.parse(ClusterEdit);
 
       // Check whether docker is running
-      console.log();
+      this.log();
       ux.action.start('Checking docker');
 
       if (!(await dockerUp())) {
          ux.action.stop(ux.colorize('red', 'Down'));
-         throw new Error(ux.colorize('red', 'Docker needs to be running'));
+         this.error(ux.colorize('red', 'Docker needs to be running'));
       }
 
       ux.action.stop(ux.colorize('green', 'Running'));
@@ -42,7 +42,7 @@ export default class ClusterEdit extends Command {
 
       // Check that cluster exists
       if (!cluster.exists()) {
-         throw new Error(ux.colorize('red', "The cluster you're trying to edit doesn't exists"));
+         this.error(ux.colorize('red', "The cluster you're trying to edit doesn't exists"));
       }
 
       // Get cluster information
@@ -50,7 +50,7 @@ export default class ClusterEdit extends Command {
 
       // Make sure there is cluster information
       if (!clusterData) {
-         throw new Error(ux.colorize('red', 'Failed to retrieve cluster information'));
+         this.error(ux.colorize('red', 'Failed to retrieve cluster information'));
       }
 
       // Merge new data with old
@@ -71,7 +71,7 @@ export default class ClusterEdit extends Command {
 
       // Make sure there is ta least one change
       if (!isChanged) {
-         throw new Error(ux.colorize('yellow', 'No changes were made'));
+         this.error(ux.colorize('yellow', 'No changes were made'));
       }
 
       // Destroys the cluster
@@ -80,7 +80,7 @@ export default class ClusterEdit extends Command {
          ux.action.stop(ux.colorize('green', 'Successful'));
       } else {
          ux.action.stop(ux.colorize('red', 'Failed'));
-         throw new Error(ux.colorize('red', 'Failed to clear old cluster information'));
+         this.error(ux.colorize('red', 'Failed to clear old cluster information'));
       }
 
       // Create updated cluster
@@ -89,7 +89,7 @@ export default class ClusterEdit extends Command {
          ux.action.stop(ux.colorize('green', 'Successful'));
       } else {
          ux.action.stop(ux.colorize('red', 'Failed'));
-         throw new Error(ux.colorize('red', 'Failed to update cluster with new options'));
+         this.error(ux.colorize('red', 'Failed to update cluster with new options'));
       }
    }
 }

@@ -13,12 +13,12 @@ export default class ClusterStart extends Command {
       const { args } = await this.parse(ClusterStart);
 
       // Check whether docker is running
-      console.log();
+      this.log();
       ux.action.start('Checking docker');
 
       if (!(await dockerUp())) {
          ux.action.stop(ux.colorize('red', 'Down'));
-         throw new Error(ux.colorize('red', 'Docker needs to be running'));
+         this.error(ux.colorize('red', 'Docker needs to be running'));
       }
 
       ux.action.stop(ux.colorize('green', 'Running'));
@@ -30,19 +30,19 @@ export default class ClusterStart extends Command {
       // Check that a cluster exists
       if (!cluster.exists()) {
          ux.action.stop(ux.colorize('yellow', 'Not Found'));
-         throw new Error(ux.colorize('yellow', 'No cluster exists with that name'));
+         this.error(ux.colorize('yellow', 'No cluster exists with that name'));
       }
 
       // Check if anything within the cluster is running
       if (await cluster.isUp()) {
          ux.action.stop(ux.colorize('red', 'Already Running'));
-         throw new Error(ux.colorize('red', 'The cluster is already running'));
+         this.error(ux.colorize('red', 'The cluster is already running'));
       }
 
       ux.action.stop(ux.colorize('green', 'Complete'));
 
       // Start up container
-      console.log(
+      this.log(
          ux.colorize(
             'yellow',
             '\nIf this is your first time starting the cluster\nit can take a while to create the image so be patient\n'
@@ -55,7 +55,7 @@ export default class ClusterStart extends Command {
          .start()
          .then(() => {
             ux.action.stop(ux.colorize('green', 'Successful'));
-            console.log(
+            this.log(
                ux.colorize(
                   'green',
                   `\n${args.name} has been started and can now be connect to using:\ntaac ssh ${cluster.name}\n`
@@ -68,8 +68,12 @@ export default class ClusterStart extends Command {
          })
          .catch((error: unknown) => {
             ux.action.stop(ux.colorize('red', 'Failed'));
-            console.error(ux.colorize('red', '\nAn error occurred while starting the cluster\n'));
-            throw error;
+            this.error(
+               ux.colorize(
+                  'red',
+                  `\nAn error occurred while starting the cluster:\n${error instanceof Error ? error.message : String(error)}`
+               )
+            );
          });
    }
 }

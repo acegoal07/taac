@@ -15,7 +15,7 @@ export default class SSHIndex extends Command {
 
       // Check whether docker is running
       if (!(await dockerUp())) {
-         throw new Error(ux.colorize('red', 'Docker needs to be running'));
+         this.error(ux.colorize('red', 'Docker needs to be running'));
       }
 
       // Get cluster
@@ -23,14 +23,12 @@ export default class SSHIndex extends Command {
 
       // Checks whether the cluster exists
       if (!cluster.exists()) {
-         throw new Error(ux.colorize('yellow', 'No cluster with that name exists'));
+         this.error(ux.colorize('yellow', 'No cluster with that name exists'));
       }
 
       // Check that the cluster is running
       if (!(await cluster.isUp())) {
-         throw new Error(
-            ux.colorize('red', 'The cluster needs to running to be able to SSH into it')
-         );
+         this.error(ux.colorize('red', 'The cluster needs to running to be able to SSH into it'));
       }
 
       // Get SHH client

@@ -16,14 +16,14 @@ export default class SshInfo extends Command {
 
       // Checks whether the cluster exists
       if (!cluster.exists()) {
-         throw new Error(ux.colorize('yellow', 'No cluster with that name exists'));
+         this.error(ux.colorize('yellow', 'No cluster with that name exists'));
       }
 
       // Get cluster SSH connection information
       const connectionInformation = cluster.connectionInfo();
 
       // Output SSH connection information
-      console.log(
+      this.log(
          `\nusername: ${connectionInformation.username}\nhost: ${connectionInformation.host}\nport: ${connectionInformation.port}\nKey path: ${connectionInformation.privateKeyPath}\n`
       );
    }

@@ -29,11 +29,11 @@ export default class ClusterCreate extends Command {
 
       // Check if the cluster already exists
       if (cluster.exists()) {
-         throw new Error(ux.colorize('red', 'A cluster with that name already exists'));
+         this.error(ux.colorize('red', 'A cluster with that name already exists'));
       }
 
       // Create spinner
-      console.log();
+      this.log();
       ux.action.start('Creating cluster');
 
       // Create cluster
@@ -52,7 +52,7 @@ export default class ClusterCreate extends Command {
          ux.action.stop(ux.colorize('green', 'successful'));
 
          // Show cluster information
-         console.log(
+         this.log(
             ux.colorize(
                'green',
                `\nThe ${cluster.name} cluster has been saved to:\n${cluster.path}\n\nYou can now start up the cluster using:\ntaac cluster:start ${cluster.name}\n`
@@ -60,7 +60,7 @@ export default class ClusterCreate extends Command {
          );
       } else {
          ux.action.stop(ux.colorize('red', 'Failed'));
-         throw new Error(ux.colorize('red', 'Failed to create a cluster'));
+         this.error(ux.colorize('red', 'Failed to create a cluster'));
       }
    }
 }

@@ -16,12 +16,12 @@ export default class DestroyIndex extends Command {
       const { args, flags } = await this.parse(DestroyIndex);
 
       // Check whether docker is running
-      console.log();
+      this.log();
       ux.action.start('Checking docker');
 
       if (!(await dockerUp())) {
          ux.action.stop(ux.colorize('red', 'Down'));
-         throw new Error(ux.colorize('red', 'Docker needs to be running'));
+         this.error(ux.colorize('red', 'Docker needs to be running'));
       }
 
       ux.action.stop(ux.colorize('green', 'Running'));
@@ -31,17 +31,17 @@ export default class DestroyIndex extends Command {
 
       // Check that the cluster exits
       if (!cluster.exists()) {
-         throw new Error(ux.colorize('yellow', `${cluster.name} isn't a cluster that exists`));
+         this.error(ux.colorize('yellow', `${cluster.name} isn't a cluster that exists`));
       }
 
       // Destroy and delete cluster
       ux.action.start(`Destroying ${cluster.name}${flags.preserve ? '' : " and it's files"}`);
       if (await cluster.destroy(flags.preserve)) {
          ux.action.stop(ux.colorize('green', 'Successful'));
-         console.log(`\nSuccessfully destroyed ${cluster.name}\n`);
+         this.log(`\nSuccessfully destroyed ${cluster.name}\n`);
       } else {
          ux.action.stop(ux.colorize('red', 'Failed'));
-         throw new Error(`\nFailed to destroy ${cluster.name}\n`);
+         this.error(`\nFailed to destroy ${cluster.name}\n`);
       }
    }
 }
