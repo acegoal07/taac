@@ -13,12 +13,12 @@ export default class ClusterRestart extends Command {
       const { args } = await this.parse(ClusterRestart);
 
       // Check whether docker is running
-      console.log();
+      this.log();
       ux.action.start('Checking docker');
 
       if (!(await dockerUp())) {
          ux.action.stop(ux.colorize('red', 'Down'));
-         throw new Error(ux.colorize('red', 'Docker needs to be running'));
+         this.error(ux.colorize('red', 'Docker needs to be running'));
       }
 
       ux.action.stop(ux.colorize('green', 'Running'));
@@ -30,13 +30,13 @@ export default class ClusterRestart extends Command {
       // Check that a cluster exists
       if (!cluster.exists()) {
          ux.action.stop(ux.colorize('yellow', 'Not Found'));
-         throw new Error(ux.colorize('yellow', 'No cluster exists with that name'));
+         this.error(ux.colorize('yellow', 'No cluster exists with that name'));
       }
 
       // Check if anything within the cluster is running
       if (!(await cluster.isUp())) {
          ux.action.stop(ux.colorize('red', 'Not Running'));
-         throw new Error(ux.colorize('red', "The cluster isn't running"));
+         this.error(ux.colorize('red', "The cluster isn't running"));
       }
 
       ux.action.stop(ux.colorize('green', 'Complete'));
@@ -50,10 +50,12 @@ export default class ClusterRestart extends Command {
          })
          .catch((error: unknown) => {
             ux.action.stop(ux.colorize('red', 'Failed'));
-            console.error(
-               ux.colorize('red', '\nAn error occurred while initialising the cluster\n')
+            this.error(
+               ux.colorize(
+                  'red',
+                  `\nAn error occurred while initialising the cluster:\n${error instanceof Error ? error.message : String(error)}\n`
+               )
             );
-            throw error;
          });
 
       // Start the cluster
@@ -62,7 +64,7 @@ export default class ClusterRestart extends Command {
          .start()
          .then(() => {
             ux.action.stop(ux.colorize('green', 'Successful'));
-            console.log(
+            this.log(
                ux.colorize(
                   'green',
                   `\n${args.name} has been restarted and can now be connect to using:\ntaac connect ${cluster.name}\n`
@@ -75,8 +77,12 @@ export default class ClusterRestart extends Command {
          })
          .catch((error: unknown) => {
             ux.action.stop(ux.colorize('red', 'Failed'));
-            console.error(ux.colorize('red', '\nAn error occurred while starting the cluster\n'));
-            throw error;
+            this.error(
+               ux.colorize(
+                  'red',
+                  `\nAn error occurred while starting the cluster:\n${error instanceof Error ? error.message : String(error)}\n`
+               )
+            );
          });
    }
 }

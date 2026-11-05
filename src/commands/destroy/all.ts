@@ -17,12 +17,12 @@ export default class DestroyAll extends Command {
       const { flags } = await this.parse(DestroyAll);
 
       // Check whether docker is running
-      console.log();
+      this.log();
       ux.action.start('Checking docker');
 
       if (!(await dockerUp())) {
          ux.action.stop(ux.colorize('red', 'Down'));
-         throw new Error(ux.colorize('red', 'Docker needs to be running'));
+         this.error(ux.colorize('red', 'Docker needs to be running'));
       }
 
       ux.action.stop(ux.colorize('green', 'Running'));
@@ -32,7 +32,7 @@ export default class DestroyAll extends Command {
 
       // Check to see if the cluster dir exists
       if (!existsSync(clustersDir)) {
-         throw new Error(ux.colorize('yellow', 'No clusters exists'));
+         this.error(ux.colorize('yellow', 'No clusters exists'));
       }
 
       // Read the clusters dir and filter out non folders
@@ -49,7 +49,7 @@ export default class DestroyAll extends Command {
          })
       ).then(() => {
          ux.action.stop(ux.colorize('green', 'Successful'));
-         console.log(
+         this.log(
             ux.colorize(
                'green',
                `\nRemoved ${clusters.length} ${clusters.length > 1 ? 'clusters' : 'cluster'}\n`

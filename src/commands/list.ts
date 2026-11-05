@@ -14,12 +14,12 @@ export default class List extends Command {
 
       // Check that the dir exists
       if (!existsSync(clustersDir)) {
-         console.log(ux.colorize('green', '\nNo clusters exist\n'));
-         return;
+         this.log(ux.colorize('green', '\nNo clusters exist\n'));
+         this.exit(0);
       }
 
       // Show a spinner while information it's collected
-      console.log();
+      this.log();
       ux.action.start('Collecting cluster information');
 
       // Read the clusters dir and filter out non folders
@@ -30,8 +30,8 @@ export default class List extends Command {
       // Makes sure there is at least one cluster
       if (clusterNames.length === 0) {
          ux.action.stop(ux.colorize('green', 'Successful'));
-         console.log(ux.colorize('green', '\nNo clusters exist\n'));
-         return;
+         this.log(ux.colorize('green', '\nNo clusters exist\n'));
+         this.exit(0);
       }
 
       // Create table layout
@@ -86,12 +86,12 @@ export default class List extends Command {
       // Check that there is information
       if (table.length === 0) {
          ux.action.stop(ux.colorize('green', 'Successful'));
-         console.log(ux.colorize('green', '\nNo clusters exist\n'));
-         return;
+         this.log(ux.colorize('green', '\nNo clusters exist\n'));
+         this.exit(0);
       }
 
       // Visualise the information
       ux.action.stop(ux.colorize('green', 'Successful'));
-      console.log(`\n${table.toString()}\n`);
+      this.log(`\n${table.toString()}\n`);
    }
 }
