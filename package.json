@@ -1,6 +1,6 @@
 {
    "name": "@acegoal07/taac",
-   "version": "1.0.5",
+   "version": "1.0.6",
    "description": "A CLI tool for creating, accessing and managing docker based clusters",
    "author": "acegoal07",
    "license": "MIT",
@@ -77,7 +77,7 @@
       }
    },
    "scripts": {
-      "build": "shx rm -rf dist && tsc -b && shx mkdir -p dist/assets && shx cp -r src/assets/setup_scripts dist/assets/ && shx cp -r src/assets/templates dist/assets/ && shx cp -r src/assets/docker dist/assets/",
+      "build": "shx rm -rf dist && tsc -b && shx mkdir -p dist/assets && shx cp -r src/assets/setup_scripts dist/assets/ && shx cp -r src/assets/templates dist/assets/ && shx cp -r src/assets/entrypoint_scripts dist/assets/",
       "lint": "eslint src/",
       "lint:fix": "eslint src/ --fix",
       "format": "prettier . --write",

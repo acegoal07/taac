@@ -1,4 +1,4 @@
-import { down, type IDockerComposeResult, ps, stop, upAll } from 'docker-compose';
+import { down, exec, type IDockerComposeResult, ps, stop, upAll } from 'docker-compose';
 import { Eta } from 'eta';
 import { randomBytes } from 'node:crypto';
 import { appendFileSync, cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -13,6 +13,7 @@ import { createKeyPair, createNodeName } from './util.js';
 export type ClusterOptions = {
    cpus: number;
    database: boolean;
+   extras: string[];
    memory: number;
    module: string;
    name: string;
@@ -112,8 +113,11 @@ export default class Cluster {
          // Create compose.yaml
          writeFileSync(path.join(this.path, 'compose.yaml'), eta.render('creation', options));
 
+         // Create docker file
+         writeFileSync(path.join(this.path, 'Dockerfile'), eta.render('compose', options));
+
          // Copy all required docker files
-         cpSync(pathToCLIAssets(__dirname, 'docker'), this.path, {
+         cpSync(pathToCLIAssets(__dirname, 'entrypoint_scripts'), this.path, {
             recursive: true
          });
 
@@ -147,7 +151,9 @@ export default class Cluster {
          this.options = options;
 
          return true;
-      } catch {
+      } catch (error) {
+         console.log(error);
+
          rmSync(this.path, {
             force: true,
             recursive: true
@@ -193,6 +199,24 @@ export default class Cluster {
     */
    dumpInfo(): ClusterOptions | undefined {
       return this.options;
+   }
+
+   /**
+    * Executes a command on the login node of the cluster
+    * @param command The command to execute
+    * @returns The outcome of the command
+    */
+   async execCommand(command: string): Promise<IDockerComposeResult | undefined> {
+      const clusterInformation = await ps({ cwd: this.path });
+      const loginContainer = clusterInformation.data.services.find(
+         ({ name }) => name === `${this.name}-login`
+      );
+
+      if (!loginContainer) {
+         return;
+      }
+
+      return exec(loginContainer.name, command);
    }
 
    /**
