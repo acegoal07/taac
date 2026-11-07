@@ -26,7 +26,7 @@ npm i -g @acegoal07/taac
    - `--port=<port_number>`: Specify the port number for the cluster
    - `--database`: whether to include a database in the cluster
    - `--module=<module_name>`: which module manager to use (default is `Lmod`) available options are `lmod` and `em`
-   - `--extras=<extra_packages>`: Specify any extra packages to be installed in the cluster (comma-separated list)
+   - `--packages=<packages_name>`: Specify any extra packages to be installed in the cluster (comma-separated list)
 - `taac cluster:edit <cluster_name>`: Edit the configuration of a specific cluster
    - `--nodes=<number_of_nodes>`: Specify the number of nodes in the cluster
    - `--cpus=<cpu_limit>`: Specify the CPU limit for each node
