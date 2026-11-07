@@ -13,11 +13,11 @@ import { createKeyPair, createNodeName } from './util.js';
 export type ClusterOptions = {
    cpus: number;
    database: boolean;
-   extras: string[];
    memory: number;
    module: string;
    name: string;
    nodes: number;
+   packages: string[];
    port: number;
 };
 

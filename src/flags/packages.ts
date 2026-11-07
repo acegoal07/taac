@@ -3,7 +3,7 @@ import { Flags } from '@oclif/core';
 /**
  * Extras flag
  */
-export const ExtrasFlag = Flags.string({
+export const PackagesFlag = Flags.string({
    char: 'e',
    default: [],
    delimiter: ',',

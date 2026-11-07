@@ -72,6 +72,11 @@ RUN ./configure \
 RUN make -j$(nproc) && \
    make install
 
+<% if (it.packages.length > 0) { %>
+RUN dnf -y install <%= it.packages.join(' ') %>
+<% } %>
+
+
 RUN mkdir -p \
    /etc/slurm \
    /var/log/slurm \
@@ -91,11 +96,6 @@ RUN echo 'CgroupPlugin=disabled' \
    > /etc/slurm/cgroup.conf
 
 WORKDIR /
-
-<% if (it.extras.length > 0) { %>
-RUN dnf install -y <%= it.extras.join(' ') %>
-<% } %>
-
 
 RUN dnf -y upgrade && \
    dnf clean all

@@ -1,6 +1,6 @@
 {
    "name": "@acegoal07/taac",
-   "version": "1.0.6",
+   "version": "1.0.7",
    "description": "A CLI tool for creating, accessing and managing docker based clusters",
    "author": "acegoal07",
    "license": "MIT",
@@ -36,6 +36,7 @@
    },
    "dependencies": {
       "@oclif/core": "^5.0.0",
+      "@oclif/plugin-autocomplete": "^4.0.6",
       "@oclif/plugin-help": "^7.0.0",
       "cli-table3": "^0.6.5",
       "docker-compose": "^1.4.2",
@@ -62,7 +63,8 @@
       "dirname": "taac",
       "commands": "./dist/commands",
       "plugins": [
-         "@oclif/plugin-help"
+         "@oclif/plugin-help",
+         "@oclif/plugin-autocomplete"
       ],
       "topics": {
          "cluster": {
