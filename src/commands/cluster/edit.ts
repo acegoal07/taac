@@ -1,6 +1,7 @@
 import { Command, ux } from '@oclif/core';
 
 import { NameArg } from '../../args/name.js';
+import { CommandsFlag } from '../../flags/commands.js';
 import { CPUsFlag } from '../../flags/cpus.js';
 import { DatabaseFlag } from '../../flags/database.js';
 import { MemoryFlag } from '../../flags/memory.js';
@@ -16,6 +17,7 @@ export default class ClusterEdit extends Command {
 
    static override readonly description = "Edit's a taac cluster";
    static override readonly flags = {
+      commands: CommandsFlag,
       cpus: CPUsFlag,
       database: DatabaseFlag,
       memory: MemoryFlag,

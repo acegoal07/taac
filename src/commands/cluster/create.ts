@@ -1,5 +1,6 @@
 import { Command, ux } from '@oclif/core';
 
+import { CommandsFlag } from '../../flags/commands.js';
 import { CPUsFlag } from '../../flags/cpus.js';
 import { DatabaseFlag } from '../../flags/database.js';
 import { MemoryFlag } from '../../flags/memory.js';
@@ -13,6 +14,7 @@ import Cluster from '../../lib/cluster.js';
 export default class ClusterCreate extends Command {
    static override readonly description = 'Creates a clusters using the flags provided';
    static override readonly flags = {
+      commands: CommandsFlag,
       cpus: CPUsFlag,
       database: DatabaseFlag,
       memory: MemoryFlag,
@@ -41,6 +43,7 @@ export default class ClusterCreate extends Command {
       // Create cluster
       if (
          cluster.create({
+            commands: flags.commands,
             cpus: flags.cpus,
             database: flags.database,
             memory: flags.memory,
