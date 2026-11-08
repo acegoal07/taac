@@ -6,6 +6,7 @@ import { DatabaseFlag } from '../../flags/database.js';
 import { MemoryFlag } from '../../flags/memory.js';
 import { ModuleFlag } from '../../flags/module.js';
 import { NodesFlag } from '../../flags/nodes.js';
+import { PackagesFlag } from '../../flags/packages.js';
 import { PortFlag } from '../../flags/port.js';
 import Cluster, { type ClusterOptions } from '../../lib/cluster.js';
 import { dockerUp } from '../../lib/util.js';
@@ -20,6 +21,7 @@ export default class ClusterEdit extends Command {
       memory: MemoryFlag,
       module: ModuleFlag,
       nodes: NodesFlag,
+      packages: PackagesFlag,
       port: PortFlag
    };
 

@@ -33,7 +33,8 @@ npm i -g @acegoal07/taac
    - `--memory=<memory_limit>`: Specify the memory limit for each node
    - `--port=<port_number>`: Specify the port number for the cluster
    - `--database`: whether to include a database in the cluster
-   - `--module=<module_name>`: which module manager to use (default is `Lmod`) available options are `lmod` and `em` (Environment Modules)
+   - `--module=<module_name>`: which module manager to use (default is `Lmod`) available options are `lmod` and `em`
+   - `--packages=<packages_name>`: Specify any extra packages to be installed in the cluster (comma-separated list)(Environment Modules)
 - `taac cluster:exec <cluster_name> <command>`: Execute a command in a specific cluster
 - `taac cluster:restart <cluster_name>`: Restart a specific cluster
 - `taac cluster:start <cluster_name>`: Start a specific cluster
