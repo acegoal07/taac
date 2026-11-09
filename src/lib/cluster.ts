@@ -11,6 +11,7 @@ import { createKeyPair, createNodeName } from './util.js';
  * The options that are available within a cluster
  */
 export type ClusterOptions = {
+   commands: string[];
    cpus: number;
    database: boolean;
    memory: number;

@@ -44,7 +44,8 @@ export default class List extends Command {
             ux.colorize('cyan', 'CPUs'),
             ux.colorize('cyan', 'Memory'),
             ux.colorize('cyan', 'Nodes'),
-            ux.colorize('cyan', 'Database')
+            ux.colorize('cyan', 'Database'),
+            ux.colorize('cyan', 'Packages')
          ]
       });
 
@@ -75,7 +76,8 @@ export default class List extends Command {
                clusterInfo.cpus,
                clusterInfo.memory,
                clusterInfo.nodes,
-               clusterInfo.database ? 'Yes' : 'No'
+               clusterInfo.database ? ux.colorize('green', 'Yes') : ux.colorize('red', 'No'),
+               clusterInfo.packages.join(', ')
             ];
          })
       );

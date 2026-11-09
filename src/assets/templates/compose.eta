@@ -72,6 +72,10 @@ RUN ./configure \
 RUN make -j$(nproc) && \
    make install
 
+<% for (const command of it.commands) { %>
+RUN <%= command %> 
+<% } %>
+
 <% if (it.packages.length > 0) { %>
 RUN dnf -y install <%= it.packages.join(' ') %>
 <% } %>
