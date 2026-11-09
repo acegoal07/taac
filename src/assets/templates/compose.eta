@@ -1,5 +1,5 @@
 # Base image
-FROM rockylinux:9.3 AS base
+FROM rockylinux:9 AS base
 
 ARG SLURM_VERSION=26.05.1
 
@@ -14,6 +14,7 @@ RUN dnf -y install \
    gcc-c++ \
    make \
    wget \
+   tar \
    bzip2 \
    openssl-devel \
    readline-devel \
