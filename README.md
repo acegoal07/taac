@@ -9,9 +9,10 @@ taac is a CLI tool that allows users to create test clusters using docker. It of
 - `Node.js v24 or higher`
 - `Docker installed and running`
 
-## Images used:
+## Versions used:
 
 - `rockylinux:9.3`
+- `slurm:26.05.1`
 
 ## How to install:
 
