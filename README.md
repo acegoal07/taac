@@ -1,8 +1,8 @@
-<Img src="./logo.webp" alt="NPM version" style="max-width: 400px; height: auto; margin: 0 auto; display: block; border-radius: 10px;" />
+<div align="center">
+
+   <Img src="./logo.webp" alt="NPM version" style="max-width: 400px; height: auto;" />
 
 ---
-
-<div align="center">
   <a href="https://www.npmjs.com/package/@acegoal07/taac">
     <img src="https://img.shields.io/npm/v/@acegoal07/taac?style=for-the-badge&logo=npm" alt="NPM version" />
   </a>
