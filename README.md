@@ -1,4 +1,4 @@
-<Img src="https://acegoal07.dev/assets/images/TAACLogoBanner.webp" alt="NPM version" style="max-width: 500px; height: auto; margin: 0 auto; display: block;" />
+<Img src="https://acegoal07.dev/assets/images/TAACLogoBanner.webp" alt="NPM version" style="max-width: 400px; height: auto; margin: 0 auto; display: block;" />
 
 ---
 
