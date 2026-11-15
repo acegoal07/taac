@@ -1,4 +1,4 @@
-<Img src="./logo.webp" alt="NPM version" style="max-width: 500px; height: auto; margin: 0 auto; display: block;" />
+<Img src="./logo.webp" alt="NPM version" style="max-width: 400px; height: auto; margin: 0 auto; display: block; border-radius: 10px;" />
 
 ---
 
