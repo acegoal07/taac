@@ -1,6 +1,32 @@
-# taac - Technically Almost A Cluster
+<Img src="https://acegoal07.dev/assets/images/TAACLogoBanner.webp" alt="NPM version" style="max-width: 500px; height: auto; margin: 0 auto; display: block;" />
+
+---
+
+<div align="center">
+  <a href="https://www.npmjs.com/package/@acegoal07/taac">
+    <img src="https://img.shields.io/npm/v/@acegoal07/taac?style=for-the-badge&logo=npm" alt="NPM version" />
+  </a>
+  <a href="https://www.npmjs.com/package/@acegoal07/taac">
+    <img src="https://img.shields.io/npm/dw/%40acegoal07%2Ftaac
+    ?style=for-the-badge&logo=npm" alt="NPM downloads" />
+  </a>
+  <a href="https://github.com/acegoal07/taac">
+    <img src="https://img.shields.io/github/stars/acegoal07/taac?style=for-the-badge&logo=github" alt="GitHub stars" />
+  </a>
+  <a href="https://github.com/acegoal07/taac/issues">
+    <img src="https://img.shields.io/github/issues/acegoal07/taac?style=for-the-badge&logo=github" alt="GitHub issues" />
+  </a>
+  <a href="https://github.com/acegoal07/taac/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/acegoal07/taac?style=for-the-badge&logo=github" alt="GitHub contributors" />
+  </a>
+
+---
 
 [View on NPM](https://www.npmjs.com/package/@acegoal07/taac)
+
+---
+
+</div>
 
 taac is a CLI tool that allows users to create test clusters using docker. It offers the ability to customise the clusters, manage the created clusters, and access them all from within the CLI.
 
