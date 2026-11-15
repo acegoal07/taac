@@ -7,8 +7,7 @@
     <img src="https://img.shields.io/npm/v/@acegoal07/taac?style=for-the-badge&logo=npm" alt="NPM version" />
   </a>
   <a href="https://www.npmjs.com/package/@acegoal07/taac">
-    <img src="https://img.shields.io/npm/dw/%40acegoal07%2Ftaac
-    ?style=for-the-badge&logo=npm" alt="NPM downloads" />
+    <img src="https://img.shields.io/npm/dw/%40acegoal07%2Ftaac?style=for-the-badge&logo=npm" alt="NPM downloads" />
   </a>
   <a href="https://github.com/acegoal07/taac">
     <img src="https://img.shields.io/github/stars/acegoal07/taac?style=for-the-badge&logo=github" alt="GitHub stars" />
