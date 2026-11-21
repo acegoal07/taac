@@ -59,6 +59,7 @@ npm i -g @acegoal07/taac
    - `--module=<module_name>`: which module manager to use (default is `Lmod`) available options are `lmod` and `em`
    - `--packages=<packages_name>`: Specify any extra packages to be installed in the cluster (comma-separated list)
    - `--commands=<command>`: Specify any extra commands to be executed in the cluster (comma-separated list) (run before packages installation)
+- `taac cluster:duplicate <target_cluster_name> <new_cluster_name>`: Duplicate an existing cluster with a new name
 - `taac cluster:edit <cluster_name>`: Edit the configuration of a specific cluster
    - `--nodes=<number_of_nodes>`: Specify the number of nodes in the cluster
    - `--cpus=<cpu_limit>`: Specify the CPU limit for each node
