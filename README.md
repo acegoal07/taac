@@ -37,7 +37,8 @@ taac is a CLI tool that allows users to create test clusters using docker. It of
 
 ## Versions used:
 
-- `rockylinux:9`
+- `rockylinux:10`
+- `rockylinux:10-minimal`
 - `slurm:26.05.1`
 
 ## How to install:
