@@ -19,7 +19,7 @@ RUN --mount=type=cache,target=/var/cache/dnf \
   gcc gcc-c++ make wget tar bzip2 \
   openssl-devel readline-devel ncurses-devel \
   perl munge-devel mariadb-devel \
-  json-c-devel llhttp-devel libyaml-devel \
+  json-c-devel libyaml-devel \
   dbus-devel \
   && dnf clean all
 
@@ -31,7 +31,7 @@ RUN wget -O slurm.tar.bz2 https://download.schedmd.com/slurm/slurm-${SLURM_VERSI
   && cd slurm-${SLURM_VERSION} \
   && ./configure --prefix=/usr/local/slurm \
   --sysconfdir=/etc/slurm --with-munge \
-  --with-mysql --with-llhttp-parser \
+  --with-mysql \
   --disable-dependency-tracking \
   && make -j"$(nproc)" \
   && make install \
@@ -53,7 +53,7 @@ RUN dnf -y install dnf-plugins-core \
 # Runtime libraries ONLY - no compilers or headers
 RUN dnf install -y \
   munge openssl-libs readline \
-  json-c llhttp libyaml dbus-libs \
+  json-c libyaml dbus-libs \
   mariadb-connector-c openssh-server \
   openssh-clients ncurses sudo \
   && dnf clean all
