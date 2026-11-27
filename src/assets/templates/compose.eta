@@ -102,6 +102,9 @@ RUN echo \
 
 RUN echo 'CgroupPlugin=disabled' > /etc/slurm/cgroup.conf
 
+RUN dnf -y upgrade && \
+  dnf clean all
+
 # Global custom commands
 <% for (const command of it.commands) { %>
 RUN <%= command %>
