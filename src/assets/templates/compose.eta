@@ -1,4 +1,4 @@
-ARG SLURM_VERSION=26.05.1
+ARG SLURM_VERSION=26.11.0
 
 # ==========================================
 # BUILD STAGE
@@ -7,11 +7,11 @@ FROM rockylinux:10 AS builder
 
 ARG SLURM_VERSION
 
-RUN dnf -y install dnf-plugins-core && \
-  dnf config-manager --set-enabled crb && \
-  dnf -y install epel-release && \
-  dnf -y update && \
-  dnf clean all
+RUN dnf -y install dnf-plugins-core \
+  && dnf config-manager --set-enabled crb \
+  && dnf -y install epel-release \
+  && dnf -y update \
+  && dnf clean all
 
 # Build dependencies only
 RUN --mount=type=cache,target=/var/cache/dnf \
@@ -26,20 +26,16 @@ RUN --mount=type=cache,target=/var/cache/dnf \
 WORKDIR /usr/src
 
 # Download and compile Slurm
-RUN wget -O slurm.tar.bz2 \
-  https://download.schedmd.com/slurm/slurm-${SLURM_VERSION}.tar.bz2 && \
-  tar -xjf slurm.tar.bz2 && \
-  cd slurm-${SLURM_VERSION} && \
-  ./configure \
-  --prefix=/usr/local/slurm \
-  --sysconfdir=/etc/slurm \
-  --with-munge \
-  --with-mysql \
-  --with-llhttp-parser \
-  --disable-dependency-tracking && \
-  make -j"$(nproc)" && \
-  make install && \
-  rm -rf /usr/src/*
+RUN wget -O slurm.tar.bz2 https://download.schedmd.com/slurm/slurm-${SLURM_VERSION}.tar.bz2 \
+  && tar -xjf slurm.tar.bz2 \
+  && cd slurm-${SLURM_VERSION} \
+  && ./configure --prefix=/usr/local/slurm \
+  --sysconfdir=/etc/slurm --with-munge \
+  --with-mysql --with-llhttp-parser \
+  --disable-dependency-tracking \
+  && make -j"$(nproc)" \
+  && make install \
+  && rm -rf /usr/src/*
 
 
 # ==========================================
@@ -48,26 +44,18 @@ RUN wget -O slurm.tar.bz2 \
 FROM rockylinux:10 AS runtime
 
 # Enable CRB and EPEL 10
-RUN dnf -y install dnf-plugins-core && \
-  dnf config-manager --set-enabled crb && \
-  dnf -y install epel-release && \
-  dnf config-manager --set-enabled epel && \
-  dnf clean all
+RUN dnf -y install dnf-plugins-core \
+  && dnf config-manager --set-enabled crb \
+  && dnf -y install epel-release \
+  && dnf config-manager --set-enabled epel \
+  && dnf clean all
 
 # Runtime libraries ONLY - no compilers or headers
 RUN dnf install -y \
-  munge \
-  openssl-libs \
-  readline \
-  json-c \
-  llhttp \
-  libyaml \
-  dbus-libs \
-  mariadb-connector-c \
-  openssh-server \
-  openssh-clients \
-  ncurses \
-  sudo \
+  munge openssl-libs readline \
+  json-c llhttp libyaml dbus-libs \
+  mariadb-connector-c openssh-server \
+  openssh-clients ncurses sudo \
   && dnf clean all
 
 COPY --from=builder /usr/local/slurm /usr/local/slurm
@@ -75,24 +63,17 @@ COPY --from=builder /usr/local/slurm /usr/local/slurm
 RUN groupadd -r slurm && \
   useradd -r -g slurm slurm && \
   mkdir -p \
-  /etc/slurm \
-  /var/log/slurm \
-  /var/log/munge \
-  /var/lib/munge \
-  /run/munge \
-  /etc/munge \
-  /slurm/state \
-  /slurm/spool && \
-  chown -R munge:munge \
-  /var/log/munge \
-  /var/lib/munge \
-  /run/munge \
-  /etc/munge && \
-  chown -R slurm:slurm /var/log/slurm /slurm && \
-  useradd -m dev && \
-  mkdir -p /etc/sudoers.d && \
-  echo "dev ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/dev && \
-  chmod 0440 /etc/sudoers.d/dev
+  /etc/slurm /var/log/slurm /var/log/munge \
+  /var/lib/munge /run/munge /etc/munge \
+  /slurm/state /slurm/spool \
+  && chown -R munge:munge \
+  /var/log/munge /var/lib/munge \
+  /run/munge /etc/munge \
+  && chown -R slurm:slurm /var/log/slurm /slurm \
+  && useradd -m dev \
+  && mkdir -p /etc/sudoers.d \
+  && echo "dev ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/dev \
+  && chmod 0440 /etc/sudoers.d/dev
 
 ENV PATH="/usr/local/slurm/bin:/usr/local/slurm/sbin:$PATH"
 
@@ -112,8 +93,8 @@ RUN <%= command %>
 
 # Global custom packages
 <% if (it.packages.length > 0) { %>
-RUN dnf install -y <%= it.packages.join(' ') %> && \
-  dnf clean all
+RUN dnf install -y <%= it.packages.join(' ') %> \
+  && dnf clean all
 <% } %>
 
 WORKDIR /
