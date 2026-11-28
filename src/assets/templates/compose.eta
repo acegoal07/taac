@@ -60,9 +60,9 @@ RUN dnf install -y \
 
 COPY --from=builder /usr/local/slurm /usr/local/slurm
 
-RUN groupadd -r slurm && \
-  useradd -r -g slurm slurm && \
-  mkdir -p \
+RUN groupadd -r slurm \
+  && useradd -r -g slurm slurm \
+  && mkdir -p \
   /etc/slurm /var/log/slurm /var/log/munge \
   /var/lib/munge /run/munge /etc/munge \
   /slurm/state /slurm/spool \
@@ -129,8 +129,8 @@ CMD ["/entrypoint.sh"]
 # ==========================================
 FROM runtime AS database
 
-RUN dnf install -y mariadb-server && \
-  dnf clean all
+RUN dnf install -y mariadb-server \
+  && dnf clean all
 
 COPY entrypoint-database.sh /entrypoint.sh
 COPY setup_scripts/database.sh /tmp/setup_scripts/database.sh
